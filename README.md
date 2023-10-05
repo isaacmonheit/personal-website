@@ -1,2 +1,2 @@
 # personal website
- my personal website, doesn't have anything right now, but I will add more soon
+current just contains one side project I'm working on, called "Breathe." Will add more about myself later
