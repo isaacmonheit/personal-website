@@ -89,20 +89,10 @@ const fullscreenToggle = document.getElementById('fullscreenToggle');
 
 fullscreenToggle.addEventListener('click', function() {
     // Prefixed versions for older browsers
-    const requestFullscreen = document.documentElement.requestFullscreen ||
-                              document.documentElement.webkitRequestFullscreen || 
-                              document.documentElement.mozRequestFullScreen || 
-                              document.documentElement.msRequestFullscreen;
+    const requestFullscreen = document.documentElement.requestFullscreen;
+    const exitFullscreen = document.exitFullscreen;
 
-    const exitFullscreen = document.exitFullscreen ||
-                           document.webkitExitFullscreen || 
-                           document.mozCancelFullScreen || 
-                           document.msExitFullscreen;
-
-    if (!document.fullscreenElement && 
-        !document.webkitFullscreenElement && 
-        !document.mozFullScreenElement && 
-        !document.msFullscreenElement) {
+    if (!document.fullscreenElement) {
         requestFullscreen.call(document.documentElement);
         fullscreenToggle.style.display = 'none'; // hide the button in fullscreen mode
     } else {
@@ -111,24 +101,6 @@ fullscreenToggle.addEventListener('click', function() {
     }
     updateFullscreenButtonVisibility();
 });
-
-function updateFullscreenButtonVisibility() {
-    if (document.fullscreenElement || 
-        document.webkitFullscreenElement || 
-        document.mozFullScreenElement || 
-        document.msFullscreenElement) {
-        fullscreenToggle.style.display = 'none';
-    } else {
-        fullscreenToggle.style.display = 'block';
-    }
-}
-
-// Standard event
-document.addEventListener('fullscreenchange', updateFullscreenButtonVisibility);
-// Prefixed events for older browsers
-document.addEventListener('webkitfullscreenchange', updateFullscreenButtonVisibility);
-document.addEventListener('mozfullscreenchange', updateFullscreenButtonVisibility);
-document.addEventListener('MSFullscreenChange', updateFullscreenButtonVisibility);
 
 ///////////////////////// SLIDER CODE ///////////////////////////
 
